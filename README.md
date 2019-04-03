@@ -1,8 +1,10 @@
 # Tugas besar untuk mata kuliah stuktur data
+
   - Ganjar Gingin Tahyudin
   - M. Raehan Akbar
   <br>
 # ToDo List
+
 - [ ] membuat stuktur dasar program
 - [ ] menambah fitur insert first
 - [ ] menambah fitur insert last

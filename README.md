@@ -5,7 +5,7 @@
   
 # ToDo List<br>
 
-- [ ] membuat stuktur dasar program
+- [x] membuat stuktur dasar program
 - [ ] menambah fitur insert first
 - [ ] menambah fitur insert last
 - [ ] menambah fitur insert After

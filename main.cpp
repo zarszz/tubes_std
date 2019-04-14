@@ -25,6 +25,7 @@ int main() {
         cout << "2.tambah club" << endl;
         cout << "3.menambahkan hubungan player dan club" << endl;
         cout << "4.hapus suatu pemain" << endl;
+        cout << "5.club dan pemainnya" << endl;
         cout << "9.keluar" << endl;
         cout << endl;
         cout << endl;

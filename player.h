@@ -1,31 +1,41 @@
+#ifndef TUBES_STD_PLAYER_H
+#define TUBES_STD_PLAYER_H
+
+#define nextto(P)  P->next
+#define infoto(P)  P->info
+#define firstto(S) S.first
+#define relasi(P)  P->next_player_address
 #include <iostream>
 #include <string>
-#define playerInfo(P) (P)->info
-#define next(P) (P)->next
-#define prev(P) (P)->prev
-#define first(L) ((L).first)
 
 using namespace std;
 
-typedef string infoPlayer;
-
-typedef struct  elmPlayer *addrPlayer;
-
-struct elmPlayer{
-  infoPlayer info;
-  addrPlayer next;
-  addrPlayer prev;
+struct player{
+    string name;
+    int mantan;
 };
 
-struct playerList{
-  addrPlayer first;
+typedef struct element *address;
+struct element{
+    player info;
+    address next;
 };
 
-void createPlayerList(playerList &L);
-addrPlayer Allocation(string x, addrPlayer P);
-void insertFirstPlayer(playerList &L, addrPlayer P);
-void insertAfterPlayer(playerList &L, addrPlayer P, addrPlayer Q); //variabel Q sebagai variabel yang dicari
-void insertLastPlayer(playerList &L, addrPlayer P);
-void deleteFirstPlayer(playerList &L, addrPlayer P);
-void deleteAfterPlayer(playerList &L, addrPlayer P);
-addrPlayer findPlayer(playerList L);
+struct list_player{
+    address first;
+};
+
+void create_list_player(list_player &S);
+address alokasi_player(player X);
+void insert_first_player(list_player &S, address P);
+void view_player(list_player S);
+void dealokasi_player(address P);
+void delete_first_player(list_player &S);
+void insert_last_player(list_player &S, address P);
+void delete_last_player(list_player &S);
+void insert_after_player(list_player &S, address P, int R);
+void delete_after_player(list_player &S, int R);
+address search_player(list_player S,string name);
+void update_player(address P,string name);
+
+#endif

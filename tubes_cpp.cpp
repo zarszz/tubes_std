@@ -190,6 +190,18 @@ void insert_first_club(list_club &S, address_club P){
 
 
 }
+
+void list_club_on_list(list_club C){
+   address_club P = firstto(C);
+   if (P != NULL){
+       while (P != NULL){
+           cout << infoto(P).name_club << endl;
+           P = nextto(P);
+       }
+   }
+}
+
+
 void view_club(list_club S,list_player K){
     if(firstto(S) != NULL){
         address_club p = firstto(S);
@@ -341,9 +353,6 @@ address_club search_club(list_club S,string nama_club){
     }
 
 }
-void update(address_club P,string club){
-
-}
 
 void set_player_club(list_player L1,list_club L2,string nama_club_pemain,string nama_pemain){
     address P;
@@ -433,6 +442,7 @@ void search_the_most_player_have_ex(list_player L1,list_club L2){
             }
             P = nextto(P);
         } player_and_ex(L1,L2,infoto(P).name);
+          the_worst_ex_club(L2);
     }
 }
 
@@ -440,21 +450,22 @@ void the_worst_ex_club(list_club L2){
 
    int nilai_min = 0;
    address_club Q = firstto(L2);
-   string mantan_terdikit;
+   address_club X = firstto(L2);
    nilai_min = infoto(Q).jumlah_mantan;
 
-   if(Q != NULL){
+if(firstto(L2) != NULL){
        while (nextto(Q) != NULL){
            if (infoto(Q).jumlah_mantan < nilai_min){
                nilai_min = infoto(Q).jumlah_mantan;
-               mantan_terdikit = infoto(Q).name_club;
+               Q = X;
+               infoto(X).name_club = infoto(Q).name_club;
+
            }
            Q = nextto(Q);
        }
-       cout << "klub dengan mantan terendah adalah " << mantan_terdikit << endl;
+       cout << "klub dengan mantan terendah adalah: " << infoto(X).name_club << endl;
        cout << "dengan jumlah mantan " << nilai_min << endl;
 
    }
-
 
 }

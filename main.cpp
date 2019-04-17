@@ -17,16 +17,19 @@ int main() {
     create_list_player(S);
     create_list_club(C);
 
-    while(n != '9') {
+    while(n != '-') {
         cout << endl;
         cout << "=========================================================================================" << endl;
         cout << endl;
         cout << "1.tambah player" << endl;
         cout << "2.tambah club" << endl;
         cout << "3.menambahkan hubungan player dan club" << endl;
-        cout << "4.hapus suatu pemain" << endl;
+        cout << "4.hapus suatu pemain dari memori " << endl;
         cout << "5.club dan pemainnya" << endl;
-        cout << "9.keluar" << endl;
+        cout << "6.menghapus pemain dari suatu club" << endl;
+        cout << "7.menampilkan pemain dan mantannya" << endl;
+        cout << "8.nama pemain dengan terbanyak" << endl;
+        cout << "-.keluar" << endl;
         cout << endl;
         cout << endl;
         cout << "==============================================================================================="
@@ -53,8 +56,9 @@ int main() {
             cin >> nama_pemain;
             cout << "masukkan nama club" << endl;
             cin >> add_nama_club;
-            set_player_club(S,C,add_nama_club,nama_pemain);
+            set_player_club(S, C, add_nama_club, nama_pemain);
         }
+
 
         if (n == '4'){
             cout << "masukkan nama pemain" << endl;
@@ -63,9 +67,29 @@ int main() {
         }
 
         if (n == '5'){
-            view_club(C);
+            view_club(C,S);
         }
 
+        if (n == '6'){
+            cout << "masukkan nama pemain" << endl;
+            cin >> nama_pemain;
+            cout << "masukkan nama club" << endl;
+            cin >> add_nama_club;
+            set_player_ex(S,C,add_nama_club,nama_pemain);
+        }
+        if (n == '7'){
+            cout << "masukkan nama pemain " << endl;
+            cin >> nama_pemain;
+
+            player_and_ex(S,C,nama_pemain);
+        }
+        if (n == '8'){
+            search_the_most_player_have_ex(S,C);
+        }
+
+        }
+        if (n == '9'){
+            the_worst_ex_club(C);
         }
 
     }

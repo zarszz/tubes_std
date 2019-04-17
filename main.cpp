@@ -28,12 +28,17 @@ int main() {
         cout << "5.club dan pemainnya" << endl;
         cout << "6.menghapus pemain dari suatu club" << endl;
         cout << "7.menampilkan pemain dan mantannya" << endl;
-        cout << "8.nama pemain dengan terbanyak" << endl;
+        cout << "8.nama pemain dengan terbanyak mantan terbanyak dan club dengan mantan terdikit" << endl;
         cout << "-.keluar" << endl;
         cout << endl;
         cout << endl;
-        cout << "==============================================================================================="
-             << endl;
+        cout << "pemain saat ini ada didata: " << endl;
+        view_player(S);
+        cout << endl;
+        cout << endl;
+        cout << "club yang saat ini ada di data: " << endl;
+        list_club_on_list(C);
+        cout << "==============================================================================================="<< endl;
         cout << "pilihan anda: ";
         cin >> n;
         if(n == '1' ){
@@ -41,14 +46,14 @@ int main() {
                 cin >> nama_pemain;
                 K.name = nama_pemain;
                 P = alokasi_player(K);
-                insert_first_player(S, P);
+                insert_last_player(S, P);
         }
         if(n == '2'){
             cout << "masukkan nama club" << endl;
             cin >> add_nama_club;
             T.name_club = add_nama_club;
             U = alokasi_club(T);
-            insert_first_club(C,U);
+            insert_last_club(C,U);
         }
 
         if (n == '3'){
@@ -87,9 +92,6 @@ int main() {
             search_the_most_player_have_ex(S,C);
         }
 
-        }
-        if (n == '9'){
-            the_worst_ex_club(C);
         }
 
     }

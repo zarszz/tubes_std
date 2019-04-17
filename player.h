@@ -5,6 +5,9 @@
 #define infoto(P)  P->info
 #define firstto(S) S.first
 #define relasi(P)  P->next_player_address
+#define tanda(P)   P->penanda
+#define mantan(P)  P->mantan_hub
+#define player(P)  P->player
 #include <iostream>
 #include <string>
 
@@ -13,16 +16,35 @@ using namespace std;
 struct player{
     string name;
     int mantan;
+    int curr_club = 0;
 };
 
 typedef struct element *address;
 struct element{
     player info;
     address next;
+    address penanda;
 };
 
 struct list_player{
     address first;
+};
+
+struct club{
+    string name_club;
+    int jumlah_mantan;
+};
+
+typedef struct element_club *address_club;
+struct element_club{
+    club info;
+    address_club next;
+    address next_player_address;
+    address mantan_hub;
+};
+
+struct list_club{
+    address_club first;
 };
 
 void create_list_player(list_player &S);

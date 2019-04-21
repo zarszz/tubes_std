@@ -31,7 +31,7 @@ void view_player(list_player S){
         while (p != NULL){
             cout << endl;
             cout << endl;
-            cout << "PLayer Name: "     << infoto(p).name << endl;
+            cout << "PLayer Name: "     << infoto(p).name << "  Club saat ini:   " << infoto(p).remain_club<< endl;
 
             p = nextto(p);
         }
@@ -210,17 +210,16 @@ void view_club(list_club S,list_player K){
             cout << endl;
             cout << "Club Name: "     << infoto(p).name_club << endl;
             cout << "         PEMAINNYA        " << endl;
-            if(relasi(p) != NULL){
+            //if(relasi(p) != NULL){
                 address q = firstto(K);
                 while (q != NULL) {
-                    if(tanda(q) != NULL) {
-                        cout << endl;
-                        cout << "Nama Pemain: " << infoto(q).name << endl;
+                    if(infoto(q).remain_club == infoto(p).name_club) {
+                        cout << infoto(q).name << endl;
                     }
 
                     q = nextto(q);
                 }
-            }
+            //}
             p = nextto(p);
         }
     }
@@ -283,55 +282,8 @@ void delete_last_club(list_club &S){
     }
 
 }
-void insert_after_club(list_club &S, address_club P, int R){
-    if (firstto(S) != NULL){
-        address_club p = firstto(S);
-        int i = 1;
-        while (p != NULL && i < R){
-            p = nextto(p);
-            i++;
-        }
-        if (p != NULL){
-            nextto(P) = nextto(p);
-            nextto(p) = P;
-        } else{
-            cout << "data tidak sampai ke  " << R << "  data" << endl;
-        }
-    }
-    else{insert_first_club(S,P);
 
-    }
 
-}
-void delete_after_club(list_club &S, int R){
-    if(firstto(S) != NULL){
-
-        address_club p = firstto(S);
-        int i = 1;
-        while (p != NULL && i < R){
-            p = nextto(p);
-            i++;
-
-        }
-        if (p != NULL){
-            if(nextto(p) == NULL){
-                delete_last_club(S);
-            }
-            else{
-                address_club q = nextto(p);
-                nextto(p) = nextto(q);
-                nextto(q) = NULL;
-                dealokasi_club(q);
-            }
-        } else{
-            cout << "data tidak sampai " << R << " data" << endl;
-        }
-    }
-    else{
-        cout << "data kosong" << endl;
-    }
-
-}
 address_club search_club(list_club S,string nama_club){
     if (firstto(S) != NULL ){
         address_club p = firstto(S);
@@ -363,25 +315,28 @@ void set_player_club(list_player L1,list_club L2,string nama_club_pemain,string 
 if (infoto(P).curr_club == 0) {
     if (P != NULL && Q != NULL) {
         relasi(Q) = P;
-        tanda(P) = relasi(Q);
+        infoto(P).remain_club = infoto(Q).name_club;
         infoto(P).curr_club += 1;
+        cout << infoto(P).name << "sukses bergabung dengan club  " << infoto(Q).name_club;
     }
 }
 else{
     cout << "sorry player already have a club " << endl;
 }
 
+
+
 }
 
 void delete_player_any_club(list_player L1,list_club L2,string player){
-    address P;
-    address_club Q;
+    address P = firstto(L1);
+    address_club Q = firstto(L2);
 
     P = search_player(L1,player);
     if (P != NULL){
         Q = firstto(L2);
         while (Q != NULL){
-            if (relasi(Q) = P){
+            if (relasi(Q) != NULL){
                 relasi(Q) = NULL;
             }
             Q = nextto(Q);
@@ -397,15 +352,20 @@ void set_player_ex(list_player L1,list_club L2,string nama_club_pemain,string na
 
     P = search_player(L1,nama_pemain);
     Q = search_club(L2,nama_club_pemain);
-        if (P != NULL && Q != NULL && mantan(Q) == NULL) {
+        if (P != NULL && Q != NULL) {
             relasi(Q) = NULL;
             mantan(Q) = P;
+            tanda(P) = Q;
             infoto(P).mantan += 1;
             infoto(P).curr_club -= 1;
             infoto(Q).jumlah_mantan += 1;
+            infoto(P).remain_club = " ";
         }
         else if(mantan(Q) != NULL){
             cout << "tidak mungkin pemain menjadi mantan club disaat yang sama " << endl;
+        }
+        else{
+            cout << "nama pemain / nama club mungkin tidak ditemukan" << endl;
         }
 
 
@@ -420,7 +380,7 @@ void player_and_ex(list_player L1,list_club L2,string namaplayer){
         cout << namaplayer << endl;
         cout << "deretan mantan clubnya" << endl;
         while( Q != NULL){
-            if (mantan(Q) == P){
+            if (tanda(P) == Q || mantan(Q) == P){
                 cout << infoto(Q).name_club << endl;
             }
             Q = nextto(Q);
@@ -433,15 +393,17 @@ void search_the_most_player_have_ex(list_player L1,list_club L2){
     int nilai_max = 0;
     string mantan_terbanyak;
     address P = firstto(L1);
+    address E = firstto(L1);
 
     if(P != NULL){
         while (nextto(P) != NULL){
             if(infoto(P).mantan > nilai_max){
                 nilai_max = infoto(P).mantan;
-                mantan_terbanyak = infoto(P).name;
+                E = P;
+                infoto(E).name = infoto(P).name;
             }
             P = nextto(P);
-        } player_and_ex(L1,L2,infoto(P).name);
+        } player_and_ex(L1,L2,infoto(E).name);
           the_worst_ex_club(L2);
     }
 }
@@ -454,17 +416,15 @@ void the_worst_ex_club(list_club L2){
    nilai_min = infoto(Q).jumlah_mantan;
 
 if(firstto(L2) != NULL){
-       while (nextto(Q) != NULL){
+       while (Q != NULL){
            if (infoto(Q).jumlah_mantan < nilai_min){
-               nilai_min = infoto(Q).jumlah_mantan;
-               Q = X;
-               infoto(X).name_club = infoto(Q).name_club;
-
-           }
+               X = Q;
+               infoto(X).name_club = infoto(Q).name_club;}
+               infoto(X).jumlah_mantan = infoto(Q).jumlah_mantan;
            Q = nextto(Q);
        }
        cout << "klub dengan mantan terendah adalah: " << infoto(X).name_club << endl;
-       cout << "dengan jumlah mantan " << nilai_min << endl;
+       cout << "dengan jumlah mantan " << infoto(X).jumlah_mantan << endl;
 
    }
 

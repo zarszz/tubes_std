@@ -1,4 +1,4 @@
-/
+//
 // Created by rsof on 14/04/19.
 //
 
@@ -6,7 +6,22 @@
 #define TUBES_STD_CLUB_H
 #include "player.h"
 
+struct club{
+    string name_club;
+    int jumlah_mantan;
+};
 
+
+struct element_club{
+    club info;
+    address_club next;
+    address next_player_address;
+    address mantan_hub;
+};
+
+struct list_club{
+    address_club first;
+};
 
 void create_list_club(list_club &S);
 address_club alokasi_club(club X);

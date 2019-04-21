@@ -4,20 +4,21 @@ int main() {
     char n;
     list_player S;
     list_club C;
-    address P,Q;
-    address_club U,X;
+    address P, Q;
+    address_club U, X;
     club T;
     player K;
     string nama_pemain;
     string posisi_pemain;
     string no_punggung;
     string klub_pemain;
-    string add_nama_club,add_asal_club,add_stadium_club;
+    string add_nama_club, add_asal_club, add_stadium_club;
 
     create_list_player(S);
     create_list_club(C);
 
-    while(n != '-') {
+    while (n != '9') {
+        system("clear");
         cout << endl;
         cout << "=========================================================================================" << endl;
         cout << endl;
@@ -29,7 +30,7 @@ int main() {
         cout << "6.menghapus pemain dari suatu club" << endl;
         cout << "7.menampilkan pemain dan mantannya" << endl;
         cout << "8.nama pemain dengan terbanyak mantan terbanyak dan club dengan mantan terdikit" << endl;
-        cout << "-.keluar" << endl;
+        cout << "9.keluar" << endl;
         cout << endl;
         cout << endl;
         cout << "pemain saat ini ada didata: " << endl;
@@ -38,25 +39,36 @@ int main() {
         cout << endl;
         cout << "club yang saat ini ada di data: " << endl;
         list_club_on_list(C);
-        cout << "==============================================================================================="<< endl;
+        cout << "==============================================================================================="
+             << endl;
         cout << "pilihan anda: ";
         cin >> n;
-        if(n == '1' ){
-                cout << "masukkan nama pemain" << endl;
-                cin >> nama_pemain;
-                K.name = nama_pemain;
-                P = alokasi_player(K);
-                insert_last_player(S, P);
+        if (n == '1') {
+            system("clear");
+            cout << "masukkan nama pemain" << endl;
+            cin >> nama_pemain;
+            K.name = nama_pemain;
+            P = alokasi_player(K);
+            insert_last_player(S, P);
         }
-        if(n == '2'){
+        if (n == '2') {
+            system("clear");
             cout << "masukkan nama club" << endl;
             cin >> add_nama_club;
             T.name_club = add_nama_club;
             U = alokasi_club(T);
-            insert_last_club(C,U);
+            insert_last_club(C, U);
         }
 
-        if (n == '3'){
+        if (n == '3') {
+            system("clear");
+            cout << "pemain saat ini ada didata: " << endl;
+            view_player(S);
+            cout << endl;
+            cout << endl;
+            cout << "club yang saat ini ada di data: " << endl;
+            list_club_on_list(C);
+            cout << endl;
             cout << "masukkan nama pemain" << endl;
             cin >> nama_pemain;
             cout << "masukkan nama club" << endl;
@@ -65,33 +77,60 @@ int main() {
         }
 
 
-        if (n == '4'){
+        if (n == '4') {
+            system("clear");
+            cout << "pemain saat ini ada didata: " << endl;
+            view_player(S);
+            cout << endl;
             cout << "masukkan nama pemain" << endl;
             cin >> nama_pemain;
-            delete_player_any_club(S,C,nama_pemain);
+            delete_player_any_club(S, C, nama_pemain);
         }
 
-        if (n == '5'){
-            view_club(C,S);
+        if (n == '5') {
+            while (n != '9') {
+                system("clear");
+                view_club(C, S);
+                cout << "tekan sembarang untuk melihat lagi dan tekan 9 untuk kembali ke menu" << endl;
+                cin >> n;
+            }
+            n = '0';
         }
 
-        if (n == '6'){
+        if (n == '6') {
+            system("clear");
+            cout << "pemain saat ini ada didata: " << endl;
+            view_player(S);
             cout << "masukkan nama pemain" << endl;
             cin >> nama_pemain;
-            cout << "masukkan nama club" << endl;
+            cout << "masukkan nama club pemain " << endl;
             cin >> add_nama_club;
-            set_player_ex(S,C,add_nama_club,nama_pemain);
+            set_player_ex(S, C, add_nama_club, nama_pemain);
         }
-        if (n == '7'){
-            cout << "masukkan nama pemain " << endl;
-            cin >> nama_pemain;
-
-            player_and_ex(S,C,nama_pemain);
+        if (n == '7') {
+            while (n != '9') {
+                system("clear");
+                cout << "pemain saat ini ada didata: " << endl;
+                view_player(S);
+                cout << endl;
+                cout << "masukkan nama pemain " << endl;
+                cin >> nama_pemain;
+                player_and_ex(S, C, nama_pemain);
+                cout << "tekan sembarang untuk mencari lagi dan 9 untuk keluar" << endl;
+                cin >> n;
+            }
+            n = '0';
         }
-        if (n == '8'){
-            search_the_most_player_have_ex(S,C);
-        }
+        if (n == '8') {
+            while (n != '9') {
+                system("clear");
+                search_the_most_player_have_ex(S, C);
+                cout << "tekan sembarang untuk mencari lagi dan 9 untuk keluar" << endl;
+                cin >> n;
+            }
+            n = '0';
 
         }
 
     }
+}

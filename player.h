@@ -10,6 +10,7 @@
 #define player(P)  P->player
 #include <iostream>
 #include <string>
+#include "club.h"
 
 using namespace std;
 
@@ -17,35 +18,22 @@ struct player{
     string name;
     int mantan;
     int curr_club = 0;
+    string remain_club;
 };
-
 typedef struct element *address;
+typedef struct element_club *address_club;
+
 struct element{
     player info;
     address next;
-    address penanda;
+    address_club penanda;
 };
 
 struct list_player{
     address first;
 };
 
-struct club{
-    string name_club;
-    int jumlah_mantan;
-};
 
-typedef struct element_club *address_club;
-struct element_club{
-    club info;
-    address_club next;
-    address next_player_address;
-    address mantan_hub;
-};
-
-struct list_club{
-    address_club first;
-};
 
 void create_list_player(list_player &S);
 address alokasi_player(player X);

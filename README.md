@@ -13,7 +13,4 @@
 -view football player and the ex(on going)<br>
 -view football player with most ex-club(done)<br>
 -view football player with woest ex-club(done)<br>
-
-# <strong>buat laporan jangan lupa kontol !!!!<strong>
-
  

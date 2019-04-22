@@ -30,13 +30,10 @@ void view_player(list_player S){
         address p = firstto(S);
         while (p != NULL){
             cout << endl;
-            cout << endl;
-            cout << "PLayer Name: "     << infoto(p).name << "  Club saat ini:   " << infoto(p).remain_club<< endl;
-
+            cout << "PLayer Name: "<< infoto(p).name << "  Club saat ini:   " << infoto(p).remain_club<< endl;
             p = nextto(p);
         }
     }
-
 }
 void dealokasi_player(address P){
     delete P;
@@ -147,7 +144,7 @@ void delete_after_player(list_player &S, int R){
 address search_player(list_player S,string nama){
     if (firstto(S) != NULL ){
         address p = firstto(S);
-        while (p != NULL && infoto(p).name != nama){
+        while (nextto(p) != NULL && infoto(p).name != nama){
             p = nextto(p);
 
         }
@@ -158,7 +155,6 @@ address search_player(list_player S,string nama){
         else{
             return NULL;
         }
-
     }
     else{
         return NULL;
@@ -193,6 +189,9 @@ void insert_first_club(list_club &S, address_club P){
 
 void list_club_on_list(list_club C){
    address_club P = firstto(C);
+   if(P == NULL){
+       cout << "input tidak valid \n";
+   }
    if (P != NULL){
        while (P != NULL){
            cout << infoto(P).name_club << endl;
@@ -203,23 +202,22 @@ void list_club_on_list(list_club C){
 
 
 void view_club(list_club S,list_player K){
+    int pemain = 1;
     if(firstto(S) != NULL){
         address_club p = firstto(S);
         while (p != NULL){
             cout << endl;
             cout << endl;
-            cout << "Club Name: "     << infoto(p).name_club << endl;
-            cout << "         PEMAINNYA        " << endl;
-            //if(relasi(p) != NULL){
+            cout << "Club Name    : " << infoto(p).name_club << endl;
+            cout << "Daftar Pemain: " << endl;
                 address q = firstto(K);
                 while (q != NULL) {
                     if(infoto(q).remain_club == infoto(p).name_club) {
-                        cout << infoto(q).name << endl;
+                        cout << pemain << "." << infoto(q).name << endl;
+                        pemain++;
                     }
-
                     q = nextto(q);
                 }
-            //}
             p = nextto(p);
         }
     }
@@ -312,20 +310,19 @@ void set_player_club(list_player L1,list_club L2,string nama_club_pemain,string 
 
     P = search_player(L1,nama_pemain);
     Q = search_club(L2,nama_club_pemain);
-if (infoto(P).curr_club == 0) {
-    if (P != NULL && Q != NULL) {
-        relasi(Q) = P;
-        infoto(P).remain_club = infoto(Q).name_club;
-        infoto(P).curr_club += 1;
-        cout << infoto(P).name << "sukses bergabung dengan club  " << infoto(Q).name_club;
+    if(P == NULL || Q == NULL){
+        cout << "pemain atau club tidak terdapat dalam data \n";
     }
-}
-else{
+    if (infoto(P).curr_club == 0) {
+        if (P != NULL && Q != NULL) {
+            relasi(Q) = P;
+            infoto(P).remain_club = infoto(Q).name_club;
+            infoto(P).curr_club += 1;
+            cout << infoto(P).name << "berhasil bergabung dengan club  " << infoto(Q).name_club;
+        }
+    } else {
     cout << "sorry player already have a club " << endl;
-}
-
-
-
+    }
 }
 
 void delete_player_any_club(list_player L1,list_club L2,string player){
@@ -372,16 +369,18 @@ void set_player_ex(list_player L1,list_club L2,string nama_club_pemain,string na
 }
 
 void player_and_ex(list_player L1,list_club L2,string namaplayer){
+    int club = 1;
     address P;
     address_club Q = firstto(L2);
     P = search_player(L1,namaplayer);
 
     if (P != NULL && infoto(P).mantan > 0){
-        cout << namaplayer << endl;
-        cout << "deretan mantan clubnya" << endl;
+        cout << "Nama Pemain : " << namaplayer << endl;
+        cout << "Club yang pernah dimaini pemain tersebut : " << endl;
         while( Q != NULL){
             if (tanda(P) == Q || mantan(Q) == P){
-                cout << infoto(Q).name_club << endl;
+                cout << club << "." << infoto(Q).name_club << endl;
+                club++;
             }
             Q = nextto(Q);
         }

@@ -1,4 +1,5 @@
 #include "club.h"
+#include "player.h"
 
 int main() {
     char n;
@@ -32,29 +33,35 @@ int main() {
         cout << "8.nama pemain dengan terbanyak mantan terbanyak dan club dengan mantan terdikit" << endl;
         cout << "9.keluar" << endl;
         cout << endl;
+        //cout << endl;
+        //cout << "pemain saat ini ada didata: " << endl;
+        //view_player(S);
         cout << endl;
-        cout << "pemain saat ini ada didata: " << endl;
-        view_player(S);
-        cout << endl;
-        cout << endl;
-        cout << "club yang saat ini ada di data: " << endl;
-        list_club_on_list(C);
-        cout << "==============================================================================================="
-             << endl;
+        //cout << endl;
+        //cout << "club yang saat ini ada di data: " << endl;
+        //list_club_on_list(C);
+        cout << "==========================================================================================" << endl;
         cout << "pilihan anda: ";
         cin >> n;
         if (n == '1') {
-            system("clear");
-            cout << "masukkan nama pemain" << endl;
-            cin >> nama_pemain;
-            K.name = nama_pemain;
-            P = alokasi_player(K);
-            insert_last_player(S, P);
+            while (n != '9') {
+                system("clear");
+                cout << "   INPUT NAMA PEMAIN   \n";
+                cout << "masukkan nama pemain : ";
+                getline(cin >> ws, nama_pemain);
+                K.name = nama_pemain;
+                P = alokasi_player(K);
+                insert_last_player(S, P);
+                cout << "\ntekan sembarang untuk melihat lagi dan tekan 9 untuk kembali ke menu" << endl;
+                cout << "pilihan ->";
+                cin >> n;
+            }
+            n = 'x';
         }
         if (n == '2') {
             system("clear");
             cout << "masukkan nama club" << endl;
-            cin >> add_nama_club;
+            getline(cin>>ws, add_nama_club);
             T.name_club = add_nama_club;
             U = alokasi_club(T);
             insert_last_club(C, U);
@@ -70,9 +77,9 @@ int main() {
             list_club_on_list(C);
             cout << endl;
             cout << "masukkan nama pemain" << endl;
-            cin >> nama_pemain;
+            getline(cin>>ws, nama_pemain);
             cout << "masukkan nama club" << endl;
-            cin >> add_nama_club;
+            getline(cin>>ws, add_nama_club);
             set_player_club(S, C, add_nama_club, nama_pemain);
         }
 
@@ -83,7 +90,7 @@ int main() {
             view_player(S);
             cout << endl;
             cout << "masukkan nama pemain" << endl;
-            cin >> nama_pemain;
+            getline(cin>>ws, nama_pemain);
             delete_player_any_club(S, C, nama_pemain);
         }
 
@@ -102,9 +109,9 @@ int main() {
             cout << "pemain saat ini ada didata: " << endl;
             view_player(S);
             cout << "masukkan nama pemain" << endl;
-            cin >> nama_pemain;
+            getline(cin>>ws, nama_pemain);
             cout << "masukkan nama club pemain " << endl;
-            cin >> add_nama_club;
+            getline(cin>>ws, add_nama_club);
             set_player_ex(S, C, add_nama_club, nama_pemain);
         }
         if (n == '7') {
@@ -114,7 +121,7 @@ int main() {
                 view_player(S);
                 cout << endl;
                 cout << "masukkan nama pemain " << endl;
-                cin >> nama_pemain;
+                getline(cin>>ws, nama_pemain);
                 player_and_ex(S, C, nama_pemain);
                 cout << "tekan sembarang untuk mencari lagi dan 9 untuk keluar" << endl;
                 cin >> n;

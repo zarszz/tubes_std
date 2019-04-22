@@ -1,6 +1,8 @@
 #ifndef TUBES_STD_PLAYER_H
 #define TUBES_STD_PLAYER_H
 
+#include <bits/stdc++.h>
+
 #define nextto(P)  P->next
 #define infoto(P)  P->info
 #define firstto(S) S.first
@@ -8,8 +10,7 @@
 #define tanda(P)   P->penanda
 #define mantan(P)  P->mantan_hub
 #define player(P)  P->player
-#include <iostream>
-#include <string>
+
 #include "club.h"
 
 using namespace std;

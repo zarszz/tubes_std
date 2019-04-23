@@ -30,7 +30,7 @@ void view_player(list_player S){
         address p = firstto(S);
         while (p != NULL){
             cout << endl;
-            cout << "PLayer Name: "<< infoto(p).name << "  Club saat ini:   " << infoto(p).remain_club<< endl;
+            cout << "Player Name: "<< infoto(p).name << "  ||  Club saat ini:   " << infoto(p).remain_club<< endl;
             p = nextto(p);
         }
     }
@@ -189,12 +189,9 @@ void insert_first_club(list_club &S, address_club P){
 
 void list_club_on_list(list_club C){
    address_club P = firstto(C);
-   if(P == NULL){
-       cout << "input tidak valid \n";
-   }
    if (P != NULL){
        while (P != NULL){
-           cout << infoto(P).name_club << endl;
+           cout << "-" << infoto(P).name_club << endl;
            P = nextto(P);
        }
    }
@@ -213,8 +210,7 @@ void view_club(list_club S,list_player K){
                 address q = firstto(K);
                 while (q != NULL) {
                     if(infoto(q).remain_club == infoto(p).name_club) {
-                        cout << pemain << "." << infoto(q).name << endl;
-                        pemain++;
+                        cout  << "- " << infoto(q).name << endl;
                     }
                     q = nextto(q);
                 }
@@ -369,7 +365,6 @@ void set_player_ex(list_player L1,list_club L2,string nama_club_pemain,string na
 }
 
 void player_and_ex(list_player L1,list_club L2,string namaplayer){
-    int club = 1;
     address P;
     address_club Q = firstto(L2);
     P = search_player(L1,namaplayer);
@@ -379,8 +374,7 @@ void player_and_ex(list_player L1,list_club L2,string namaplayer){
         cout << "Club yang pernah dimaini pemain tersebut : " << endl;
         while( Q != NULL){
             if (tanda(P) == Q || mantan(Q) == P){
-                cout << club << "." << infoto(Q).name_club << endl;
-                club++;
+                cout << "-" << "." << infoto(Q).name_club << endl;
             }
             Q = nextto(Q);
         }

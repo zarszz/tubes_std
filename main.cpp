@@ -30,30 +30,30 @@ int main() {
         cout << "5.club dan pemainnya" << endl;
         cout << "6.menghapus pemain dari suatu club" << endl;
         cout << "7.menampilkan pemain dan mantannya" << endl;
-        cout << "8.nama pemain dengan terbanyak mantan terbanyak dan club dengan mantan terdikit" << endl;
+        cout << "8.nama pemain dengan mantan club terbanyak dan club dengan mantan terdikit" << endl;
         cout << "9.keluar" << endl;
         cout << endl;
-        //cout << endl;
-        //cout << "pemain saat ini ada didata: " << endl;
-        //view_player(S);
         cout << endl;
-        //cout << endl;
-        //cout << "club yang saat ini ada di data: " << endl;
-        //list_club_on_list(C);
+        cout << "pemain saat ini ada didata: " << endl;
+        view_player(S);
+        cout << endl;
+        cout << "club yang saat ini ada di data: " << endl;
+        list_club_on_list(C);
         cout << "==========================================================================================" << endl;
-        cout << "pilihan anda: ";
+        cout << "masukkan pilihan(1-9) -> ";
         cin >> n;
         if (n == '1') {
             while (n != '9') {
                 system("clear");
-                cout << "   INPUT NAMA PEMAIN   \n";
+                cout << "\t\tINPUT NAMA PEMAIN\t\t \n\n";
                 cout << "masukkan nama pemain : ";
                 getline(cin >> ws, nama_pemain);
                 K.name = nama_pemain;
                 P = alokasi_player(K);
                 insert_last_player(S, P);
-                cout << "\ntekan sembarang untuk melihat lagi dan tekan 9 untuk kembali ke menu" << endl;
-                cout << "pilihan ->";
+                cout << "\n   --> tekan sembarang untuk INPUT kembali\n"
+                        "   --> tekan 9 untuk kembali ke menu\n" << endl;
+                cout << "pilihan -> ";
                 cin >> n;
             }
             n = 'x';

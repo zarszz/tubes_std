@@ -26,11 +26,16 @@ void insert_first_player(list_player &S, address P){
 
 }
 void view_player(list_player S){
-    if(firstto(S) != NULL){
+    if(firstto(S) == NULL){
+        cout << "player list empty \n";
+    }
+    else if(firstto(S) != NULL){
         address p = firstto(S);
         while (p != NULL){
-            cout << endl;
-            cout << "Player Name: "<< infoto(p).name << "  ||  Club saat ini:   " << infoto(p).remain_club<< endl;
+            if(infoto(p).name != "") {
+                cout << endl;
+                cout << "Player Name: " << infoto(p).name << "  ||  Club saat ini:   " << infoto(p).remain_club << endl;
+            }
             p = nextto(p);
         }
     }
@@ -144,7 +149,7 @@ void delete_after_player(list_player &S, int R){
 address search_player(list_player S,string nama){
     if (firstto(S) != NULL ){
         address p = firstto(S);
-        while (nextto(p) != NULL && infoto(p).name != nama){
+        while (p != NULL && infoto(p).name != nama){
             p = nextto(p);
 
         }
@@ -210,7 +215,9 @@ void view_club(list_club S,list_player K){
                 address q = firstto(K);
                 while (q != NULL) {
                     if(infoto(q).remain_club == infoto(p).name_club) {
-                        cout  << "- " << infoto(q).name << endl;
+                        if(infoto(q).name != "") {
+                            cout << "- " << infoto(q).name << endl;
+                        }
                     }
                     q = nextto(q);
                 }
@@ -322,19 +329,23 @@ void set_player_club(list_player L1,list_club L2,string nama_club_pemain,string 
 }
 
 void delete_player_any_club(list_player L1,list_club L2,string player){
-    address P = firstto(L1);
-    address_club Q = firstto(L2);
-
-    P = search_player(L1,player);
-    if (P != NULL){
-        Q = firstto(L2);
-        while (Q != NULL){
-            if (relasi(Q) != NULL){
-                relasi(Q) = NULL;
+    address prevP = firstto(L1);
+    address P = search_player(L1,player);
+    infoto(P).name = "";
+    if(P != NULL) {
+        if(P == firstto(L1) || nextto(P) == NULL){
+            P = NULL;
+            cout << "now, player list is empty \n";
+        } else if(P != firstto(L1)) {
+            while (nextto(prevP) != P) {
+                prevP = nextto(prevP);
             }
-            Q = nextto(Q);
+            nextto(prevP) = nextto(P);
+            P = NULL;
+            dealokasi_player(P);
         }
-        dealokasi_player(P);
+    } else if(P == NULL){
+        cout << "player not found \n";
     }
 }
 

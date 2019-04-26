@@ -2,6 +2,8 @@
 #include "player.h"
 
 int main() {
+    address cek_pemain;
+    address_club cek_club;
     char n;
     list_player S;
     list_club C;
@@ -48,9 +50,15 @@ int main() {
                 cout << "\t\tINPUT NAMA PEMAIN\t\t \n\n";
                 cout << "masukkan nama pemain : ";
                 getline(cin >> ws, nama_pemain);
-                K.name = nama_pemain;
-                P = alokasi_player(K);
-                insert_last_player(S, P);
+                cek_pemain = search_player(S, nama_pemain);
+                if(cek_pemain != NULL){
+                    cout << "player sudah ada di dalam data !! \n";
+                } else if(cek_pemain == NULL) {
+                    K.name = nama_pemain;
+                    P = alokasi_player(K);
+                    insert_last_player(S, P);
+                    cout << "nama player berhasil dimasukkan !! \n";
+                }
                 cout << "\n   --> tekan sembarang untuk INPUT kembali\n"
                         "   --> tekan 9 untuk kembali ke menu\n" << endl;
                 cout << "pilihan -> ";
@@ -91,7 +99,7 @@ int main() {
             cout << endl;
             cout << "masukkan nama pemain" << endl;
             getline(cin>>ws, nama_pemain);
-            delete_player_any_club(S, C, nama_pemain);
+            delete_player_any_club(S,C,nama_pemain);
         }
 
         if (n == '5') {

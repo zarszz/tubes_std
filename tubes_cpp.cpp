@@ -335,7 +335,6 @@ void delete_player_any_club(list_player L1,list_club L2,string player){
     if(P != NULL) {
         if(P == firstto(L1) || nextto(P) == NULL){
             P = NULL;
-            cout << "now, player list is empty \n";
             dealokasi_player(P);
         } else if(P != firstto(L1)) {
             while (nextto(prevP) != P) {

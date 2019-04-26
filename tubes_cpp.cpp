@@ -328,7 +328,7 @@ void set_player_club(list_player L1,list_club L2,string nama_club_pemain,string 
     }
 }
 
-void delete_player_any_club(list_player L1,list_club L2,string player){
+void delete_player_any_club(list_player L1,string player){
     address prevP = firstto(L1);
     address P = search_player(L1,player);
     infoto(P).name = "";

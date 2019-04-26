@@ -99,7 +99,7 @@ int main() {
             cout << endl;
             cout << "masukkan nama pemain" << endl;
             getline(cin>>ws, nama_pemain);
-            delete_player_any_club(S,C,nama_pemain);
+            delete_player_any_club(S,nama_pemain);
         }
 
         if (n == '5') {

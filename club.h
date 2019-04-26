@@ -21,7 +21,7 @@ struct element_club{
 
 struct list_club{
     address_club first;
-};1
+};
 
 void create_list_club(list_club &S);
 address_club alokasi_club(club X);
@@ -35,7 +35,7 @@ void insert_after_club(list_club &S, address_club P, int R);
 void delete_after_club(list_club &S, int R);
 address_club search_club(list_club S,string nama_club);
 void set_player_club(list_player L1,list_club L2,string nama_club,string nama_pemain);
-void delete_player_any_club(list_player L1, string player);
+void delete_player_any_club(list_player &L1, string player);
 void set_player_ex(list_player L1,list_club L2,string nama_club,string nama_pemain);
 void player_and_ex(list_player L1,list_club L2,string namaplayer);
 void search_the_most_player_have_ex(list_player L1,list_club L2);

@@ -28,7 +28,7 @@ int main() {
         cout << "1.tambah player" << endl;
         cout << "2.tambah club" << endl;
         cout << "3.menambahkan hubungan player dan club" << endl;
-        cout << "4.hapus suatu pemain dari memori " << endl;
+        cout << "4.hapus suatu pemain tertentu " << endl;
         cout << "5.club dan pemainnya" << endl;
         cout << "6.menghapus pemain dari suatu club" << endl;
         cout << "7.menampilkan pemain dan mantannya" << endl;

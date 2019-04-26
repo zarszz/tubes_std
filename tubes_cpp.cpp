@@ -324,7 +324,7 @@ void set_player_club(list_player L1,list_club L2,string nama_club_pemain,string 
             cout << infoto(P).name << "berhasil bergabung dengan club  " << infoto(Q).name_club;
         }
     } else {
-    cout << "sorry player already have a club " << endl;
+    cout << "maaf player telah memiliki club " << endl;
     }
 }
 

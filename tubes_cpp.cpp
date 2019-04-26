@@ -335,18 +335,19 @@ void delete_player_any_club(list_player L1,string player){
     if(P != NULL) {
         if(P == firstto(L1) || nextto(P) == NULL){
             P = NULL;
-            dealokasi_player(P);
+
         } else if(P != firstto(L1)) {
             while (nextto(prevP) != P) {
                 prevP = nextto(prevP);
             }
             nextto(prevP) = nextto(P);
             P = NULL;
-            dealokasi_player(P);
+
         }
     } else if(P == NULL){
         cout << "player not found \n";
     }
+    dealokasi_player(P);
 }
 
 void set_player_ex(list_player L1,list_club L2,string nama_club_pemain,string nama_pemain){
@@ -381,13 +382,15 @@ void player_and_ex(list_player L1,list_club L2,string namaplayer){
     P = search_player(L1,namaplayer);
 
     if (P != NULL && infoto(P).mantan > 0){
-        cout << "Nama Pemain : " << namaplayer << endl;
-        cout << "Club yang pernah dimaini pemain tersebut : " << endl;
-        while( Q != NULL){
-            if (tanda(P) == Q || mantan(Q) == P){
-                cout << "-" << "." << infoto(Q).name_club << endl;
+        if(namaplayer != "") {
+            cout << "Nama Pemain : " << namaplayer << endl;
+            cout << "Club yang pernah dimaini pemain tersebut : " << endl;
+            while (Q != NULL) {
+                if (tanda(P) == Q || mantan(Q) == P) {
+                    cout << "-" << "." << infoto(Q).name_club << endl;
+                }
+                Q = nextto(Q);
             }
-            Q = nextto(Q);
         }
     }
 }

@@ -21,7 +21,7 @@ struct element_club{
 
 struct list_club{
     address_club first;
-};
+};1
 
 void create_list_club(list_club &S);
 address_club alokasi_club(club X);

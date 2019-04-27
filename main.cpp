@@ -77,6 +77,7 @@ int main() {
 
         if (n == '3') {
             system("clear");
+            cout << "\t\t MENAMBAHKAN HUBUNGAN PLAYER DAN CLUB \t\t \n\n";
             cout << "pemain saat ini ada didata: " << endl;
             view_player(S);
             cout << endl;
@@ -84,20 +85,30 @@ int main() {
             cout << "club yang saat ini ada di data: " << endl;
             list_club_on_list(C);
             cout << endl;
-            cout << "masukkan nama pemain" << endl;
+            cout << "masukkan nama pemain : ";
             getline(cin>>ws, nama_pemain);
-            cout << "masukkan nama club" << endl;
+            cek_pemain = search_player(S, nama_pemain);
+            cout << "masukkan nama club : ";
             getline(cin>>ws, add_nama_club);
-            set_player_club(S, C, add_nama_club, nama_pemain);
+            cek_club = search_club(C, add_nama_club);
+            if(cek_pemain != NULL && cek_club != NULL) {
+                set_player_club(S, C, add_nama_club, nama_pemain);
+                cout << "\n penyettingan berhasil \n";
+            } else if((cek_pemain == NULL && cek_club == NULL) || (cek_pemain != NULL && cek_club == NULL)||
+                    ((cek_club != NULL && cek_pemain == NULL)))  {
+                cout << "\n club atau permain tidak terdapat dalam data \n";
+            }
+
         }
 
 
         if (n == '4') {
             system("clear");
+            cout << "\t\t MENGHAPUS PLAYER TERTENTU \t\t\n\n";
             cout << "pemain saat ini ada didata: " << endl;
             view_player(S);
             cout << endl;
-            cout << "masukkan nama pemain" << endl;
+            cout << "masukkan nama pemain : ";
             getline(cin>>ws, nama_pemain);
             delete_player_any_club(S,nama_pemain);
         }
@@ -114,17 +125,28 @@ int main() {
 
         if (n == '6') {
             system("clear");
+            cout << "\t\t MENGHAPUS PERMAIN DARI CLUB \t\t\n\n";
             cout << "pemain saat ini ada didata: " << endl;
             view_player(S);
-            cout << "masukkan nama pemain" << endl;
+            cout << "masukkan nama pemain : ";
             getline(cin>>ws, nama_pemain);
-            cout << "masukkan nama club pemain " << endl;
+            cek_pemain = search_player(S, nama_pemain);
+            cout << "masukkan nama club : " ;
             getline(cin>>ws, add_nama_club);
-            set_player_ex(S, C, add_nama_club, nama_pemain);
+            cek_club = search_club(C, add_nama_club);
+            if(cek_pemain != NULL && cek_club != NULL) {
+                set_player_ex(S, C, add_nama_club, nama_pemain);
+                cout << "\n penyettingan berhasil \n";
+            } else if((cek_pemain == NULL && cek_club == NULL) || (cek_pemain != NULL && cek_club == NULL)||
+                      ((cek_club != NULL && cek_pemain == NULL)))  {
+                cout << "\n club atau permain tidak terdapat dalam data \n";
+            }
+
         }
         if (n == '7') {
             while (n != '9') {
                 system("clear");
+                cout << "\t\t MENAMPILKAN PEMAIN DAN MANTAN CLUBNYA \t\t \n\n";
                 cout << "pemain saat ini ada didata: " << endl;
                 view_player(S);
                 cout << endl;
@@ -139,6 +161,8 @@ int main() {
         if (n == '8') {
             while (n != '9') {
                 system("clear");
+                cout << "\t\t MENAMPILKAN PEMAIN DENGAN MANTAN CLUB TERBANYAK DAN\n";
+                cout << "\t\t CLUB DENGAN MANTAN PEMAIN PALING SEDIKIT  \n\n";
                 search_the_most_player_have_ex(S, C);
                 cout << "tekan sembarang untuk mencari lagi dan 9 untuk keluar" << endl;
                 cin >> n;

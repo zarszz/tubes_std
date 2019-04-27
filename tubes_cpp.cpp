@@ -32,7 +32,7 @@ void view_player(list_player S){
     else if(firstto(S) != NULL){
         address p = firstto(S);
         while (p != NULL){
-            if(infoto(p).name != "") {
+            if(p != NULL) {
                 cout << endl;
                 cout << "Player Name: " << infoto(p).name << "  ||  Club saat ini:   " << infoto(p).remain_club << endl;
             }
@@ -328,24 +328,28 @@ void set_player_club(list_player L1,list_club L2,string nama_club_pemain,string 
     }
 }
 
-void delete_player_any_club(list_player L1,string player){
+void delete_player_any_club(list_player &L1,string player){
     address prevP = firstto(L1);
     address P = search_player(L1,player);
-    infoto(P).name = "";
-    if(P != NULL) {
-        if(P == firstto(L1) || nextto(P) == NULL){
-            P = NULL;
-            dealokasi_player(P);
-        } else if(P != firstto(L1)) {
-            while (nextto(prevP) != P) {
-                prevP = nextto(prevP);
-            }
-            nextto(prevP) = nextto(P);
-            P = NULL;
-            dealokasi_player(P);
-        }
-    } else if(P == NULL){
+    //infoto(P).name = "";
+    if(P == firstto(L1)){
+        delete_first_player(L1);
+    } else if (nextto(P) == NULL) {
+        delete_last_player(L1);
+    } else if (P == NULL){
         cout << "player not found \n";
+    } else {
+        if (P != NULL) {
+            if (P != firstto(L1)) {
+                while (nextto(prevP) != P) {
+                    prevP = nextto(prevP);
+                }
+                nextto(prevP) = nextto(P);
+                P = NULL;
+
+            }
+        }
+        dealokasi_player(P);
     }
 }
 
@@ -381,13 +385,15 @@ void player_and_ex(list_player L1,list_club L2,string namaplayer){
     P = search_player(L1,namaplayer);
 
     if (P != NULL && infoto(P).mantan > 0){
-        cout << "Nama Pemain : " << namaplayer << endl;
-        cout << "Club yang pernah dimaini pemain tersebut : " << endl;
-        while( Q != NULL){
-            if (tanda(P) == Q || mantan(Q) == P){
-                cout << "-" << "." << infoto(Q).name_club << endl;
+        if(namaplayer != "") {
+            cout << "Nama Pemain : " << namaplayer << endl;
+            cout << "Club yang pernah dimaini pemain tersebut : " << endl;
+            while (Q != NULL) {
+                if (tanda(P) == Q || mantan(Q) == P) {
+                    cout << "-" << "." << infoto(Q).name_club << endl;
+                }
+                Q = nextto(Q);
             }
-            Q = nextto(Q);
         }
     }
 }

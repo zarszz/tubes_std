@@ -1,8 +1,12 @@
-# Tugas besar untuk mata kuliah stuktur data<br>
+# Project for data structure task <br>
+# Contributor : <br>
 
   - M. Raehan Akbar
   - Ganjar Gingin T
-  
+
+## note
+  - this program writted in CLion IDE. We didn't know if this source code can compiled from other IDE or Text Editor
+
 # ToDo List<br>
 
 -add football player(done)<br>
